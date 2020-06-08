@@ -5,35 +5,37 @@ import "errors"
 
 //Stack
 type Stack struct {
-	top   int
-	array []interface{}
+	top  int
+	tail []interface{}
 }
 
-func (Stack) Init() Stack {
+func (s *Stack) Init() {
 	var arr []interface{}
-	return Stack{-1, arr}
+	s.top = -1
+	s.tail = arr
 }
 
-func (s Stack) IsEmpty() bool {
+func (s *Stack) IsEmpty() bool {
 	return s.top == -1
 }
 
-func (s Stack) Push(item interface{}) {
+func (s *Stack) Push(item interface{}) {
 	s.top++
-	s.array[s.top] = item
+	s.tail = append(s.tail, item)
 }
 
-func (s Stack) Pop() (interface{}, error) {
+func (s *Stack) Pop() (item interface{}, err error) {
 	if s.IsEmpty() {
 		return nil, errors.New("empty stack")
 	}
+	item = s.tail[s.top]
 	s.top--
-	return s.array[s.top], nil
+	return item, nil
 }
 
-func (s Stack) Peek() (interface{}, error) {
+func (s *Stack) Peek() (interface{}, error) {
 	if s.IsEmpty() {
 		return nil, errors.New("empty stack")
 	}
-	return s.array[s.top], nil
+	return s.tail[s.top], nil
 }
