@@ -1,4 +1,4 @@
-// Package ADT implements abstract data types
+// Package Stack implements abstract data type Stack, a FILO structure
 package Stack
 
 import "errors"
