@@ -1,5 +1,5 @@
 // Package ADT implements abstract data types
-package main
+package ADT
 
 import "errors"
 
