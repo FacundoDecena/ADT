@@ -1,5 +1,5 @@
-// Package ADT implements abstract data types
-package ADT
+// Package Stack implements abstract data type Stack, a FILO structure
+package Stack
 
 import "errors"
 
@@ -29,7 +29,12 @@ func (s *Stack) Pop() (item interface{}, err error) {
 		return nil, errors.New("empty stack")
 	}
 	item = s.tail[s.top]
-	s.top--
+	if s.top > 0 {
+		s.tail = s.tail[:s.top]
+		s.top--
+	} else {
+		s.Init()
+	}
 	return item, nil
 }
 
