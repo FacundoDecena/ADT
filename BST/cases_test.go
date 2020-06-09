@@ -75,13 +75,13 @@ var (
 	}{
 		{
 			description: "Empty tree",
-			element: Structure{Index: 4},
-			tree: BST{},
-			err: true,
+			element:     Structure{Index: 4},
+			tree:        BST{},
+			err:         true,
 		},
 		{
 			description: "Find element that does not exist",
-			element: Structure{Index: 4},
+			element:     Structure{Index: 4},
 			tree: BST{
 				root: &Node{
 					Apex: Structure{Index: 5},
@@ -97,7 +97,7 @@ var (
 		},
 		{
 			description: "Find root element",
-			element: Structure{Index: 5},
+			element:     Structure{Index: 5},
 			tree: BST{
 				root: &Node{
 					Apex: Structure{Index: 5},
@@ -113,7 +113,7 @@ var (
 		},
 		{
 			description: "Find bigger element",
-			element: Structure{Index: 6},
+			element:     Structure{Index: 6},
 			tree: BST{
 				root: &Node{
 					Apex: Structure{Index: 5},
@@ -133,7 +133,7 @@ var (
 		},
 		{
 			description: "Find smaller element",
-			element: Structure{Index: 4},
+			element:     Structure{Index: 4},
 			tree: BST{
 				root: &Node{
 					Apex: Structure{Index: 5},
@@ -150,6 +150,40 @@ var (
 				},
 			},
 			err: false,
+		},
+	}
+	// Need to learn how to test struct with pointers
+	deleteCases = []struct {
+		description string
+		index       int
+		tree        BST
+		wanted      BST
+		err         bool
+	}{
+		{
+			description: "Delete from empty tree",
+			index:       0,
+			tree:        BST{},
+			wanted:      BST{},
+			err:         true,
+		},
+		{
+			description: "Delete the only element",
+			index:       0,
+			tree: BST{
+				root: &Node{
+					Apex:  Structure{Index: 0},
+					left:  nil,
+					right: nil,
+				},
+				aux: &Node{
+					Apex:  Structure{Index: 0},
+					left:  nil,
+					right: nil,
+				},
+			},
+			wanted: BST{},
+			err:    false,
 		},
 	}
 )

@@ -33,3 +33,19 @@ func TestBST_GetElement(t *testing.T) {
 		t.Logf("PASS: %s", tc.description)
 	}
 }
+
+func TestBST_DeleteElement(t *testing.T) {
+	for i, tc := range deleteCases {
+		err := tc.tree.DeleteElement(tc.index)
+		if err != nil && !tc.err {
+			t.Fatalf("FAIL: %s\nNo error expected", tc.description)
+		}
+		if err == nil && tc.err {
+			t.Fatalf("FAIL: %s\nError expected", tc.description)
+		}
+		if tc.tree != tc.wanted && !tc.err {
+			t.Fatalf("FAIL: %s", tc.description)
+		}
+		t.Logf("%d PASS: %s",i, tc.description)
+	}
+}
