@@ -92,3 +92,10 @@ func (bst BST) Show() (view string) {
 	view += bst.Show()
 	return
 }
+
+func (bst BST) GetElement(index int) (element Structure, err error){
+	if !bst.Find(index){
+		return element, errors.New("element not found")
+	}
+	return bst.Cursor.Apex, nil
+}
