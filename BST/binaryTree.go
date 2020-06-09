@@ -4,6 +4,7 @@ package BST
 
 import (
 	"errors"
+	"strconv"
 )
 
 type Structure struct {
@@ -64,4 +65,30 @@ func (bst *BST) Insert(element Structure) error {
 		}
 	}
 	return nil
+}
+
+func (bst BST) Show() (view string) {
+	if bst.root == nil {
+		return
+	}
+	bst.Cursor = bst.root
+	bst.aux = bst.root
+	view += "(" + strconv.Itoa(bst.Cursor.Apex.Index) + ")\n"
+	view += "Left son\n"
+	if bst.Cursor.left == nil {
+		view += "<nil>\n"
+	} else {
+		view += "{" + strconv.Itoa(bst.Cursor.left.Apex.Index) + "}\n"
+	}
+	view += "Right son\n"
+	if bst.Cursor.right == nil {
+		view += "<nil>\n"
+	} else {
+		view += "{" + strconv.Itoa(bst.Cursor.right.Apex.Index) + "}\n"
+	}
+	bst.root = bst.Cursor.left
+	view += bst.Show()
+	bst.root = bst.Cursor.right
+	view += bst.Show()
+	return
 }
