@@ -1,5 +1,4 @@
-// Package BST implements a Binary Search Tree for a Structure,
-// you may want to change the Structure type
+// Package BST implements a Binary Search Tree for a Structure
 package BST
 
 import (
@@ -9,6 +8,7 @@ import (
 
 type Structure struct {
 	Index int
+	Element interface{}
 }
 
 type Node struct {
